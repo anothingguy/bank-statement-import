@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!--
+    Default Plaid category mappings.
+    These are created without account_id so users can configure them
+    for their specific chart of accounts.
+
+    Plaid Primary Categories (as of 2024):
+    https://plaid.com/docs/transactions/enrich/#personal-finance-categories
+    -->
+
+    <record id="plaid_category_income" model="plaid.category.mapping">
+        <field name="name">Income</field>
+        <field name="plaid_category">INCOME</field>
+        <field name="notes">Wages, deposits, interest, dividends, tax refunds</field>
+    </record>
+
+    <record id="plaid_category_transfer_in" model="plaid.category.mapping">
+        <field name="name">Transfer In</field>
+        <field name="plaid_category">TRANSFER_IN</field>
+        <field name="notes">Incoming transfers from other accounts</field>
+    </record>
+
+    <record id="plaid_category_transfer_out" model="plaid.category.mapping">
+        <field name="name">Transfer Out</field>
+        <field name="plaid_category">TRANSFER_OUT</field>
+        <field name="notes">Outgoing transfers to other accounts</field>
+    </record>
+
+    <record id="plaid_category_loan_payments" model="plaid.category.mapping">
+        <field name="name">Loan Payments</field>
+        <field name="plaid_category">LOAN_PAYMENTS</field>
+        <field name="notes">Mortgage, car loans, student loans, personal loans</field>
+    </record>
+
+    <record id="plaid_category_bank_fees" model="plaid.category.mapping">
+        <field name="name">Bank Fees</field>
+        <field name="plaid_category">BANK_FEES</field>
+        <field name="notes">ATM fees, overdraft fees, service charges</field>
+    </record>
+
+    <record id="plaid_category_entertainment" model="plaid.category.mapping">
+        <field name="name">Entertainment</field>
+        <field name="plaid_category">ENTERTAINMENT</field>
+        <field name="notes">Movies, concerts, sports, streaming services</field>
+    </record>
+
+    <record id="plaid_category_food_and_drink" model="plaid.category.mapping">
+        <field name="name">Food and Drink</field>
+        <field name="plaid_category">FOOD_AND_DRINK</field>
+        <field name="notes">Restaurants, groceries, coffee shops, bars</field>
+    </record>
+
+    <record id="plaid_category_general_merchandise" model="plaid.category.mapping">
+        <field name="name">General Merchandise</field>
+        <field name="plaid_category">GENERAL_MERCHANDISE</field>
+        <field name="notes">Retail stores, online shopping, department stores</field>
+    </record>
+
+    <record id="plaid_category_home_improvement" model="plaid.category.mapping">
+        <field name="name">Home Improvement</field>
+        <field name="plaid_category">HOME_IMPROVEMENT</field>
+        <field name="notes">Hardware stores, contractors, furniture</field>
+    </record>
+
+    <record id="plaid_category_medical" model="plaid.category.mapping">
+        <field name="name">Medical</field>
+        <field name="plaid_category">MEDICAL</field>
+        <field name="notes">Doctors, dentists, pharmacies, hospitals</field>
+    </record>
+
+    <record id="plaid_category_personal_care" model="plaid.category.mapping">
+        <field name="name">Personal Care</field>
+        <field name="plaid_category">PERSONAL_CARE</field>
+        <field name="notes">Salons, spas, gyms, personal services</field>
+    </record>
+
+    <record id="plaid_category_general_services" model="plaid.category.mapping">
+        <field name="name">General Services</field>
+        <field name="plaid_category">GENERAL_SERVICES</field>
+        <field name="notes">Professional services, consulting, legal, accounting</field>
+    </record>
+
+    <record
+        id="plaid_category_government_and_non_profit"
+        model="plaid.category.mapping"
+    >
+        <field name="name">Government and Non-Profit</field>
+        <field name="plaid_category">GOVERNMENT_AND_NON_PROFIT</field>
+        <field name="notes">Taxes, government fees, donations, charities</field>
+    </record>
+
+    <record id="plaid_category_transportation" model="plaid.category.mapping">
+        <field name="name">Transportation</field>
+        <field name="plaid_category">TRANSPORTATION</field>
+        <field name="notes">Gas, parking, tolls, public transit, rideshare</field>
+    </record>
+
+    <record id="plaid_category_travel" model="plaid.category.mapping">
+        <field name="name">Travel</field>
+        <field name="plaid_category">TRAVEL</field>
+        <field name="notes">Airlines, hotels, car rentals, travel agencies</field>
+    </record>
+
+    <record id="plaid_category_rent_and_utilities" model="plaid.category.mapping">
+        <field name="name">Rent and Utilities</field>
+        <field name="plaid_category">RENT_AND_UTILITIES</field>
+        <field name="notes">Rent, electricity, gas, water, internet, phone</field>
+    </record>
+
+</odoo>
