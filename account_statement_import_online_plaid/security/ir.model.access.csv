@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_plaid_category_mapping_user,plaid.category.mapping.user,model_plaid_category_mapping,account.group_account_user,1,0,0,0
+access_plaid_category_mapping_manager,plaid.category.mapping.manager,model_plaid_category_mapping,account.group_account_manager,1,1,1,1

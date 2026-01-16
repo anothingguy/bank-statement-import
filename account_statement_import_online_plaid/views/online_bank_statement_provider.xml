@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Inherit provider form to add Plaid-specific fields -->
+    <record model="ir.ui.view" id="online_bank_statement_provider_form_plaid">
+        <field name="name">online.bank.statement.provider.form.plaid</field>
+        <field name="model">online.bank.statement.provider</field>
+        <field
+            name="inherit_id"
+            ref="account_statement_import_online.online_bank_statement_provider_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='main']" position="inside">
+                <group
+                    name="plaid"
+                    string="Plaid Configuration"
+                    attrs="{'invisible': [('service', '!=', 'plaid')]}"
+                >
+                    <!-- API Credentials -->
+                    <field
+                        name="plaid_client_id"
+                        password="True"
+                        attrs="{'required': [('service', '=', 'plaid')]}"
+                    />
+                    <field
+                        name="plaid_secret"
+                        password="True"
+                        attrs="{'required': [('service', '=', 'plaid')]}"
+                    />
+                    <field
+                        name="plaid_environment"
+                        attrs="{'required': [('service', '=', 'plaid')]}"
+                    />
+
+                    <!-- Connection Status -->
+                    <field
+                        name="plaid_connection_status"
+                        widget="badge"
+                        decoration-success="plaid_connection_status == 'connected'"
+                        decoration-danger="plaid_connection_status == 'error'"
+                        decoration-muted="plaid_connection_status == 'disconnected'"
+                    />
+
+                    <!-- Connected Account Details -->
+                    <field
+                        name="plaid_institution_name"
+                        readonly="1"
+                        attrs="{'invisible': [('plaid_connection_status', '=', 'disconnected')]}"
+                    />
+                    <field
+                        name="plaid_account_name"
+                        readonly="1"
+                        attrs="{'invisible': [('plaid_connection_status', '=', 'disconnected')]}"
+                    />
+                    <field
+                        name="plaid_account_type"
+                        readonly="1"
+                        attrs="{'invisible': [('plaid_connection_status', '=', 'disconnected')]}"
+                    />
+                    <field
+                        name="plaid_account_mask"
+                        readonly="1"
+                        string="Account (last 4)"
+                        attrs="{'invisible': [('plaid_connection_status', '=', 'disconnected')]}"
+                    />
+
+                    <!-- Error Message -->
+                    <field
+                        name="plaid_error_message"
+                        readonly="1"
+                        attrs="{'invisible': [('plaid_connection_status', '!=', 'error')]}"
+                    />
+
+                    <!-- Action Buttons -->
+                    <div colspan="2" class="mt-2">
+                        <button
+                            name="action_plaid_link"
+                            type="object"
+                            string="Connect Bank Account"
+                            class="btn-primary me-2"
+                            attrs="{'invisible': [('plaid_connection_status', '=', 'connected')]}"
+                        />
+                        <button
+                            name="action_plaid_link"
+                            type="object"
+                            string="Reconnect"
+                            class="btn-warning me-2"
+                            attrs="{'invisible': [('plaid_connection_status', '!=', 'error')]}"
+                        />
+                        <button
+                            name="action_plaid_disconnect"
+                            type="object"
+                            string="Disconnect"
+                            class="btn-secondary me-2"
+                            confirm="Are you sure you want to disconnect this bank account?"
+                            attrs="{'invisible': [('plaid_connection_status', '=', 'disconnected')]}"
+                        />
+                        <button
+                            name="action_plaid_refresh"
+                            type="object"
+                            string="Refresh Details"
+                            class="btn-link"
+                            attrs="{'invisible': [('plaid_connection_status', '!=', 'connected')]}"
+                        />
+                    </div>
+
+                    <!-- Advanced Settings (hidden by default) -->
+                    <field
+                        name="plaid_item_id"
+                        readonly="1"
+                        groups="base.group_no_one"
+                    />
+                    <field
+                        name="plaid_account_id"
+                        readonly="1"
+                        groups="base.group_no_one"
+                    />
+                    <field
+                        name="plaid_sync_cursor"
+                        readonly="1"
+                        groups="base.group_no_one"
+                    />
+                </group>
+            </xpath>
+
+            <!-- Add reset cursor button to header -->
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_plaid_reset_cursor"
+                    type="object"
+                    string="Reset Sync Cursor"
+                    class="btn-secondary"
+                    groups="base.group_no_one"
+                    attrs="{'invisible': ['|', ('service', '!=', 'plaid'), ('plaid_sync_cursor', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

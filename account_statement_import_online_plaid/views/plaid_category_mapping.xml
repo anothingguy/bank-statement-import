@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Tree View -->
+    <record model="ir.ui.view" id="plaid_category_mapping_tree">
+        <field name="name">plaid.category.mapping.tree</field>
+        <field name="model">plaid.category.mapping</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="plaid_category" />
+                <field name="plaid_category_detailed" optional="hide" />
+                <field name="name" />
+                <field name="account_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="active" optional="hide" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="plaid_category_mapping_form">
+        <field name="name">plaid.category.mapping.form</field>
+        <field name="model">plaid.category.mapping</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="plaid_category" />
+                            <field name="plaid_category_detailed" />
+                        </group>
+                        <group>
+                            <field name="account_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="active" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record model="ir.ui.view" id="plaid_category_mapping_search">
+        <field name="name">plaid.category.mapping.search</field>
+        <field name="model">plaid.category.mapping</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="plaid_category" />
+                <field name="account_id" />
+                <filter
+                    name="inactive"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_category"
+                        string="Plaid Category"
+                        context="{'group_by': 'plaid_category'}"
+                    />
+                    <filter
+                        name="group_account"
+                        string="Account"
+                        context="{'group_by': 'account_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record model="ir.actions.act_window" id="action_plaid_category_mapping">
+        <field name="name">Plaid Category Mappings</field>
+        <field name="res_model">plaid.category.mapping</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Plaid category mapping
+            </p>
+            <p>
+                Map Plaid transaction categories to Odoo expense accounts
+                for automatic categorization of imported transactions.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item (under Accounting > Configuration) -->
+    <menuitem
+        id="menu_plaid_category_mapping"
+        name="Plaid Categories"
+        parent="account.menu_finance_configuration"
+        action="action_plaid_category_mapping"
+        sequence="100"
+    />
+
+</odoo>
