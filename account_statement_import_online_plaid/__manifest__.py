@@ -13,7 +13,7 @@
         "account_statement_import_online",
     ],
     "external_dependencies": {
-        "python": ["plaid"],
+        "python": ["plaid", "PyJWT"],
     },
     "data": [
         "security/ir.model.access.csv",

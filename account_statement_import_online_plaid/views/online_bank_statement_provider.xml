@@ -20,16 +20,16 @@
                     <field
                         name="plaid_client_id"
                         password="True"
-                        required="[('service', '=', 'plaid')]"
+                        attrs="{'required': [('service', '=', 'plaid')]}"
                     />
                     <field
                         name="plaid_secret"
                         password="True"
-                        required="[('service', '=', 'plaid')]"
+                        attrs="{'required': [('service', '=', 'plaid')]}"
                     />
                     <field
                         name="plaid_environment"
-                        required="[('service', '=', 'plaid')]"
+                        attrs="{'required': [('service', '=', 'plaid')]}"
                     />
 
                     <!-- Connection Status -->

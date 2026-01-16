@@ -38,10 +38,12 @@ class OnlineBankStatementProviderPlaid(models.Model):
     plaid_client_id = fields.Char(
         string="Client ID",
         help="Plaid API Client ID from your Plaid dashboard",
+        groups="base.group_system",
     )
     plaid_secret = fields.Char(
         string="Secret",
         help="Plaid API Secret from your Plaid dashboard",
+        groups="base.group_system",
     )
     plaid_environment = fields.Selection(
         selection=[
